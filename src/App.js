@@ -1,20 +1,44 @@
+import { useState } from "react";
 import logo from "./logo.svg";
 // import "./App.css";
 
 function App() {
+  const [fullUrl, setFullUrl] = useState();
+
+  // const handleFormSubmit = async (e) => {
+  //   e.preventDefault();
+  //   await fetch("http://localhost:5000/shortUrls", {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       fullUrl,
+  //     }),
+  //     headers: {
+  //       "Content-type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => console.log(res))
+  //     .catch((err) => console.log(err));
+  // };
+  // console.log(fullUrl);
   return (
     <div className="w-screen h-screen flex flex-col items-center  p-8">
       <h1 className="uppercase font-bold text-xl w-full text-center">
         Url shrinker
       </h1>
-      <form className="mt-20 w-full flex items-center justify-center gap-4 " action="/shortUrls" method="POST">
-        <label form="formurl" className="font-bold text-sm sr-only" >
+      <form
+        className="mt-20 w-full flex items-center justify-center gap-4 "
+        // onSubmit={handleFormSubmit}
+        action="http://localhost:5000/shortUrls"
+        method="POST"
+      >
+        <label form="fullUrl" className="font-bold text-sm sr-only">
           Url
         </label>
         <input
           type="url"
-          name="formurl"
-          id="formurl"
+          name="fullUrl"
+          id="fullUrl"
+          onChange={(e) => setFullUrl(e.currentTarget.value)}
           className="flex-1 md:max-w-[40%] border border-black rounded-sm py-2 px-2"
         />
         <button
